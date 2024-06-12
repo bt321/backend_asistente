@@ -1,8 +1,13 @@
 import express, {Application} from 'express';
-import routesProducts from '../routes/product';
+import routesRutina from '../routes/rutina';
 import routesUser from '../routes/user';
-import sequelize from '../db/connection';
-import { Product } from './product';
+import routesPasswd from '../routes/actualizarPasswd';
+import routesObjetivo from '../routes/objetivo';
+import routesHome from '../routes/home';
+import routesDieta from '../routes/dieta';
+import db from '../db/connection';
+import { Rutina } from './rutina';
+import cors from 'cors';
 
  
  class Server{
@@ -18,6 +23,7 @@ import { Product } from './product';
         console.log();
         this.midlewares();
         this.routes();
+        this.dbConnect();
     }
 
     listen() {
@@ -26,16 +32,23 @@ import { Product } from './product';
         })
     }
     routes(){ 
-        this.app.use('/api/products', routesProducts);
+        this.app.use('/api/rutina', routesRutina);
         this.app.use('/api/users', routesUser);
+        this.app.use('/api/passwd', routesPasswd);
+        this.app.use('/api/objetivo', routesObjetivo);
+        this.app.use('/api/home', routesHome);
+        this.app.use('/api/dieta', routesDieta);
     }
-    midlewares(){
-        this.app.use(express.json());
+    midlewares(){ 
+        this.app.use(express.json()); 
+ 
+        //CORS
+        this.app.use(cors());
     }
     async dbConnect(){ 
         try{
-            await sequelize.authenticate();
-            console.log('todo OK');
+            await db.authenticate();
+            console.log('Base de datos conectada')  
 
         } catch(error){
             console.error('no se ha podido conectar a la base de datos: ', error);
@@ -43,6 +56,6 @@ import { Product } from './product';
         }
     }
 
-}
-
-export default Server;
+} 
+ 
+export default Server;  

@@ -1,8 +1,7 @@
 import { Sequelize } from "sequelize"
 
-const sequelize = new Sequelize('asistentenut', 'root', 'tahtah', {
-    host: '150.214.223.70',
+const sequelize = new Sequelize('asistente', 'root', '', {
+    host: 'localhost',
     dialect: 'mysql',
 });
 export default sequelize;
- 
