@@ -41,7 +41,7 @@ export const updateObjetivo = async(req: Request, res: Response) => {
             res.json({
                 msg : `Usuario ${datos.username} creado con exito`
             });
-    } catch (error) {
+    } catch (error) { 
         res.status(500).json({ error: 'Error al obtener las rutinas' });
     }
 }
