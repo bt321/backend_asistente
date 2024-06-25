@@ -40,7 +40,14 @@ const generarRutina = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     console.log(diasArray);
     console.log(tipoEjercicioArray);
     console.log('ESTOY AQUIIIIIIIIII');
-    let dias_entreno = diasArray.length === 0 ? 7 : 7 - diasArray.length;
+    let dias_entreno;
+    if (diasArray[0] == "") {
+        dias_entreno = 7;
+    }
+    else {
+        dias_entreno = 7 - diasArray.length;
+    }
+    //let dias_entreno: number = diasArray.length === 0 ? 7 : 7 - diasArray.length
     const datosRutina = {
         parte_desarrollo: musculoentreno.musculo_desarrollo,
         parte_fuerte: musculoentreno.musculo_fuerte,
@@ -107,11 +114,21 @@ const actualizarRutina = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const level = yield user_1.User.findAll({ attributes: ['nivel_experiencia'], where: { username: username } });
         const routine = yield rutina_1.Rutina.findAll({ attributes: ['rutina_id'], where: { username_usuario: username } });
         const tipoEjercicio = yield tipoejercicio_1.TipoEjercicio.findAll({ attributes: ['tipoEjercicio'], where: { username_usuario: username } });
+        //const diasDescanso2 = diasDescanso.map(diasDescanso => diasDescanso.dataValues.dias_semana)
+        //console.log('los dias de descanso son: ',diasDescanso2.length)
         const diasDescanso2 = diasDescanso.map(diasDescanso => diasDescanso.dataValues.dias_semana).flatMap(dias => dias.split(', '));
         const tipoEjercicio2 = tipoEjercicio.map(tipoEjercicio => tipoEjercicio.dataValues.tipoEjercicio).flatMap(tipo => tipo.split(', '));
         const otraspartes2 = otros_musculos.map(otros_musculos => otros_musculos.dataValues.otros_musculos).flatMap(otro => otro.split(', '));
         const routine2 = routine.map(routine => routine.dataValues.rutina_id);
-        let dias_entreno2 = diasDescanso2.length === 0 ? 7 : 7 - diasDescanso2.length;
+        //let dias_entreno2: number = diasDescanso2.length === 0 ? 7 : 7 - diasDescanso2.length
+        let dias_entreno2;
+        if (diasDescanso2[0] == "") {
+            dias_entreno2 = 7;
+        }
+        else {
+            dias_entreno2 = 7 - diasDescanso2.length;
+        }
+        console.log('el numero de dias de descanso es: ', diasDescanso2.length);
         console.log(`Hola soy los dias de descanso: ${diasDescanso2}`);
         const datosRutina = {
             parte_desarrollo: parte_desarrollo.map(parte_desarrollo => parte_desarrollo.dataValues.musculo_desarrollo),

@@ -4,7 +4,7 @@ import { actualizarDieta, getDieta } from '../controllers/dieta';
 
 const router = Router();
 
-router.get('/' ,getDieta);
-router.get('/actualizarDieta' ,actualizarDieta);
+router.get('/' , validateToken, getDieta);
+router.get('/actualizarDieta' , validateToken, actualizarDieta);
 
 export default router  

@@ -108,7 +108,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             msg: 'Contraseña incorrecta'
         });
     }
-    //generamos token
+    //generamos token 
     const token = jsonwebtoken_1.default.sign({
         username: username
     }, process.env.SECRET_KEY || 'holamundo123');

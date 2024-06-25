@@ -38,7 +38,7 @@ export const newUser = async(req: Request, res: Response) => {
     }
     const hashPassword = await bcrypt.hash(datosPersonales.password, 10);
 
-    try {
+    try { 
        //guardamos el usuario dentro de la base de datos
         await User.create({ 
             username: datosPersonales.username,
@@ -113,7 +113,7 @@ export const loginUser = async(req: Request, res: Response) => {
     }
 
 
-    //generamos token
+    //generamos token 
     const token = jwt.sign({ 
         username : username},
         process.env.SECRET_KEY || 'holamundo123');
@@ -121,8 +121,8 @@ export const loginUser = async(req: Request, res: Response) => {
 }
 
 export const updateDescanso = async(req: Request, res: Response) => {
-    const datos = req.body;
-    
+    const datos = req.body;  
+     
     const token = datos.token
     const decoded: any = jwt.verify(token, process.env.SECRET_KEY || 'holamundo123');
     const username = decoded.username;

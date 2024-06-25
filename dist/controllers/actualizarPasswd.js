@@ -55,7 +55,6 @@ const recuperarPasswd = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (!user) {
             return res.status(404).json({ message: 'Email no encontrado' });
         }
-        //const jwtSecret = 'holamundo'; // Usa una clave secreta segura
         // Generar un token JWT para la recuperación de la contraseña
         const token = jsonwebtoken_1.default.sign({
             username: datos.username

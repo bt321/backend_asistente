@@ -4,7 +4,7 @@ import { getObjetivo, updateObjetivo } from '../controllers/objetivo';
 
 const router = Router();
 
-router.get('/' ,getObjetivo);
+router.get('/' , validateToken, getObjetivo);
 router.post('/updateObjetivo' ,updateObjetivo)
 
 export default router

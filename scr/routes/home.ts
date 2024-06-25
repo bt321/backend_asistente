@@ -4,6 +4,6 @@ import { getDatosUser } from '../controllers/home';
 
 const router = Router();
 
-router.get('/' ,getDatosUser);
+router.get('/' , validateToken, getDatosUser);
 
 export default router

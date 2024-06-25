@@ -25,7 +25,7 @@ export const actualizarPasswd = async(req: Request, res: Response) =>{
     if(!passwordvalid){
         return res.status(400).json({
            msg: 'Contraseña antigua incorrecta'
-        })
+        }) 
     }
     const hashPassword = await bcrypt.hash(data.newPasswd, 10);
     await User.update( 
@@ -44,8 +44,6 @@ export const actualizarPasswd = async(req: Request, res: Response) =>{
         process.env.SECRET_KEY || 'holamundo123');
         res.json(token);  
 
-
-
 }
 
 export const recuperarPasswd = async(req: Request, res: Response) =>{
@@ -58,8 +56,8 @@ export const recuperarPasswd = async(req: Request, res: Response) =>{
     if (!user) {
       return res.status(404).json({ message: 'Email no encontrado' });
     }
-    //const jwtSecret = 'holamundo'; // Usa una clave secreta segura
 
+    
     // Generar un token JWT para la recuperación de la contraseña
     const token = jwt.sign({
       username : datos.username},
